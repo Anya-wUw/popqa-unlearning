@@ -1,6 +1,10 @@
+**Welcome to UNLamb!** 🐑
+
 <div align="center">
   <img src="plots_popqa_rougeL/UNLamb.jpg" width="100%" />
 </div>
+
+UNLamb is a comprehensive benchmark designed to assess machine unlearning methods by investigating how knowledge popularity impacts the efficacy of unlearning. Our research focuses on erasing facts from Large Language Models (LLMs) based on their frequency of occurrence. This benchmark introduces a split between rare and popular facts, providing a more realistic framework for testing unlearning algorithms like GA, GD, NPO, and RMU. Below, you can explore how UNLamb supports the development of popularity-aware unlearning algorithms.
 
 ---
 
@@ -89,5 +93,3 @@ bash scripts/unlamb_muse_unlearn.sh
 ## 📄 License
 
 This project is licensed under the MIT License. See the [`LICENSE`](LICENSE) file for details.
-
----
