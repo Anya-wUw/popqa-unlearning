@@ -1,3 +1,10 @@
+<div align="center">
+  <img src="plots_popqa_rougeL/UNLamb.jpg" width="100%" />
+</div>
+
+---
+
+
 ## ⚡ Quickstart
 
 ```bash
@@ -78,7 +85,6 @@ bash scripts/unlamb_muse_unlearn.sh
 
 * This repository is an extension of the [Open-Unlearning](https://github.com/locuslab/open-unlearning) repository.
 
----
 
 ## 📄 License
 
