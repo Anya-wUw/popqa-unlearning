@@ -1,6 +1,6 @@
-# @package eval.popqa.metrics.retain_Q_A_ROUGE
+# @package eval.unlamb.metrics.forget_Q_A_ROUGE
 defaults:
-  - ../../data/datasets@datasets: PopQA_rare_retain
+  - ../../data/datasets@datasets: UNLamb_rare_forget #TOFU_QA_forget
   - ../../collator@collators: DataCollatorForSupervisedDatasetwithIndex
   - ../../generation@generation_args: default
   
@@ -8,11 +8,15 @@ defaults:
 
 handler: rouge
 rouge_type: rougeL_recall
-batch_size: ${eval.popqa.batch_size}
+batch_size: ${eval.unlamb.batch_size}
+
 datasets: # override as needed
-  TOFU_QA_retain_eval:
+  UNLamb_rare_forget:
     args:
-      question_key: ${eval.popqa.question_key}
+      hf_args:
+        path: "SwetieePawsss/UNLamb_forget_splits"
+        split: ${eval.unlamb.forget_split} #_perturbed
+      question_key: ${eval.unlamb.question_key}
       predict_with_generate: True
 collators:
   DataCollatorForSupervisedDataset: 

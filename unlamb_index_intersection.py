@@ -6,24 +6,24 @@ import itertools
 FILES = {
     "GradDiff": "/mnt/extremessd10tb/borisiuk/open-unlearning/saves/eval/"
                 "eval_final_experiments/Llama-3.2-1B-Instruct/"
-                "rare_forget10_GradDiff/on_retain_intersection90/PopQA_EVAL.json",
+                "rare_forget10_GradDiff/on_retain_intersection90/UNLamb_EVAL.json",
     
     "GradAscent": "/mnt/extremessd10tb/borisiuk/open-unlearning/saves/eval/"
                   "eval_final_experiments/Llama-3.2-1B-Instruct/"
-                  "rare_forget10_GradAscent/on_retain_intersection90/PopQA_EVAL.json",
+                  "rare_forget10_GradAscent/on_retain_intersection90/UNLamb_EVAL.json",
     
     "orig_FT": "/mnt/extremessd10tb/borisiuk/open-unlearning/saves/eval/"
                "eval_final_experiments/Llama-3.2-1B-Instruct/"
-               "retain_intersection90/popqa_Llama-3.2-1B-Instruct_retain_intersection90_Original/"
-               "PopQA_EVAL.json",
+               "retain_intersection90/unlamb_Llama-3.2-1B-Instruct_retain_intersection90_Original/"
+               "UNLamb_EVAL.json",
     
     "NPO": "/mnt/extremessd10tb/borisiuk/open-unlearning/saves/eval/"
            "eval_final_experiments/Llama-3.2-1B-Instruct/"
-           "rare_forget10_NPO/on_retain_intersection90/PopQA_EVAL.json",
+           "rare_forget10_NPO/on_retain_intersection90/UNLamb_EVAL.json",
     
     "RMU": "/mnt/extremessd10tb/borisiuk/open-unlearning/saves/eval/"
            "eval_final_experiments/Llama-3.2-1B-Instruct/"
-           "rare_forget10_RMU/on_retain_intersection90/PopQA_EVAL.json"
+           "rare_forget10_RMU/on_retain_intersection90/UNLamb_EVAL.json"
 }
 
 def load_zero_indices(path):
@@ -66,13 +66,13 @@ if __name__ == "__main__":
 # import argparse
 # from collections import defaultdict
 
-# def find_popqa_files(root_dir):
-#     """Найти все PopQA_EVAL.json в дереве каталогов root_dir."""
-#     popqa_paths = []
+# def find_unlamb_files(root_dir):
+#     """Найти все UNLamb_EVAL.json в дереве каталогов root_dir."""
+#     unlamb_paths = []
 #     for dirpath, _, files in os.walk(root_dir):
-#         if 'PopQA_EVAL.json' in files:
-#             popqa_paths.append(os.path.join(dirpath, 'PopQA_EVAL.json'))
-#     return popqa_paths
+#         if 'UNLamb_EVAL.json' in files:
+#             unlamb_paths.append(os.path.join(dirpath, 'UNLamb_EVAL.json'))
+#     return unlamb_paths
 
 # def load_zero_indices(json_path):
 #     """Вернуть множество индексов (int), где rouge1_recall == 0.0."""
@@ -87,9 +87,9 @@ if __name__ == "__main__":
 #     return zeros
 
 # def main(root_dir):
-#     files = find_popqa_files(root_dir)
+#     files = find_unlamb_files(root_dir)
 #     if not files:
-#         print(f"В каталоге {root_dir} не найдено ни одного PopQA_EVAL.json")
+#         print(f"В каталоге {root_dir} не найдено ни одного UNLamb_EVAL.json")
 #         return
 
 #     # Шаг 1: для каждого файла — посчитать количество нулевых rouge1_recall
@@ -113,11 +113,11 @@ if __name__ == "__main__":
 
 # if __name__ == "__main__":
 #     parser = argparse.ArgumentParser(
-#         description="Подсчет нулевых rouge1_recall и их пересечений в PopQA_EVAL.json"
+#         description="Подсчет нулевых rouge1_recall и их пересечений в UNLamb_EVAL.json"
 #     )
 #     parser.add_argument(
 #         "root_dir",
-#         help="Корневая папка, в которой искать PopQA_EVAL.json"
+#         help="Корневая папка, в которой искать UNLamb_EVAL.json"
 #     )
 #     args = parser.parse_args()
 #     main(args.root_dir)

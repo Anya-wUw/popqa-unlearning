@@ -4,7 +4,7 @@ defaults:
   - trainer: finetune
   - data: finetune
   - collator: DataCollatorForSupervisedDataset
-  - eval: popqa #tofu
+  - eval: unlamb #tofu
   - hydra: default
   - paths: default
   - experiment: null

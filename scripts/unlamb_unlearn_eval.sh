@@ -13,7 +13,7 @@ PYCODE
 )
 
 model="Llama-3.1-8B-Instruct"
-orig_model_path="${PROJECT_ROOT}/saves/finetune/llama3.1-8b_full_5ep_ft_popqa"
+orig_model_path="${PROJECT_ROOT}/saves/finetune/llama3.1-8b_full_5ep_ft_unlamb"
 
 orig_splits=("rare_forget5" "popular_forget5" ) 
 trainers=("GradAscent" "GradDiff" "NPO" "RMU" ) 
@@ -57,9 +57,9 @@ for split in "${eval_splits[@]}"; do
   set +e
   CUDA_VISIBLE_DEVICES=1 accelerate launch --num_processes=1 src/eval.py \
     --config-name=eval.yaml \
-    experiment=eval/popqa/default \
+    experiment=eval/unlamb/default \
     forget_split="${split}" \
-    task_name="popqa_${model}_Original" \
+    task_name="unlamb_${model}_Original" \
     paths.output_dir="${out_dir}" \
     model.model_args.pretrained_model_name_or_path="${orig_model_path}" \
     2>&1 | tee "${out_dir}/eval_results.txt"
@@ -87,7 +87,7 @@ done
 
 for orig in "${orig_splits[@]}"; do
   for trainer in "${trainers[@]}"; do
-    task_name="popqa_${model}_${orig}_${trainer}"
+    task_name="unlamb_${model}_${orig}_${trainer}"
     model_path="${PROJECT_ROOT}/saves/unlearn/forget_5/${task_name}"
 
     if [ ! -d "${model_path}" ]; then
@@ -109,7 +109,7 @@ for orig in "${orig_splits[@]}"; do
       set +e
       CUDA_VISIBLE_DEVICES=1 accelerate launch --num_processes=1 src/eval.py \
         --config-name=eval.yaml \
-        experiment=eval/popqa/default \
+        experiment=eval/unlamb/default \
         forget_split="${split}" \
         task_name="${task_name}" \
         paths.output_dir="${out_dir}" \

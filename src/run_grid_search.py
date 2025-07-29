@@ -14,7 +14,7 @@ with initialize(config_path="../configs", job_name="grid_search"):
     cfg = compose(
         config_name="train.yaml",
         overrides=[
-            "experiment=finetune/popqa/default",
+            "experiment=finetune/unlamb/default",
             "model=Llama-3.1-8B-Instruct"
         ]
     )
@@ -28,13 +28,13 @@ OUT_CSV = "/mnt/extremessd10tb/borisiuk/open-unlearning/saves/gridearch_res/grid
 os.makedirs(os.path.dirname(OUT_CSV), exist_ok=True)
 
 def run_one(lr: float):
-    run_id = f"popqa_llama-3.1-8B-Instruct_full_finetune_{num_epochs}ep_{r}r_{alpha}a_{lr:.0e}lr"
+    run_id = f"unlamb_llama-3.1-8B-Instruct_full_finetune_{num_epochs}ep_{r}r_{alpha}a_{lr:.0e}lr"
     save_dir = os.path.join(BASE_SAVE, run_id)
 
     cmd = [
         "python", "src/train.py",
         "--config-name=train.yaml",
-        "experiment=finetune/popqa/default",
+        "experiment=finetune/unlamb/default",
         "model=Llama-3.1-8B-Instruct",
         # переопределяем lr как есть в конфиге
         f"trainer.args.learning_rate={lr}",
@@ -73,9 +73,9 @@ def run_one(lr: float):
     ckpts = sorted(ckpts, key=lambda p: int(p.rsplit("-", 1)[-1]))
     last_ckpt = ckpts[-1]
 
-    summary_path = os.path.join(last_ckpt, "evals", "PopQA_SUMMARY.json")
+    summary_path = os.path.join(last_ckpt, "evals", "UNLamb_SUMMARY.json")
     if not os.path.isfile(summary_path):
-        raise FileNotFoundError(f"Cannot find PopQA summary at {summary_path}")
+        raise FileNotFoundError(f"Cannot find UNLamb summary at {summary_path}")
 
     with open(summary_path, "r") as f:
         summary = json.load(f)

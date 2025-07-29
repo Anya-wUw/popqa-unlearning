@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Resume LoRA finetuning from existing checkpoints up to TOTAL_EPOCHS.
-# Usage: bash popqa_checkpoint_ft.sh
+# Usage: bash unlamb_checkpoint_ft.sh
 
 set -euo pipefail
 
@@ -18,16 +18,16 @@ MODELS=(
 
 # Названия папок с предыдущими 3-эпохными прогонками
 PREV_TASKS=(
-  "llama3.1-8b_full_3ep_ft_popqa"
-  "llama3.2-3b_full_3ep_ft_popqa"
-  "llama3.2-1b_full_3ep_ft_popqa"
+  "llama3.1-8b_full_3ep_ft_unlamb"
+  "llama3.2-3b_full_3ep_ft_unlamb"
+  "llama3.2-1b_full_3ep_ft_unlamb"
 )
 
 # Новые названия задач (будем докатывать до 5 эпох)
 NEW_TASKS=(
-  "llama3.1-8b_full_5ep_ft_popqa"
-  "llama3.2-3b_full_5ep_ft_popqa"
-  "llama3.2-1b_full_5ep_ft_popqa"
+  "llama3.1-8b_full_5ep_ft_unlamb"
+  "llama3.2-3b_full_5ep_ft_unlamb"
+  "llama3.2-1b_full_5ep_ft_unlamb"
 )
 
 # Сколько всего эпох в итоге хотим получить
@@ -71,7 +71,7 @@ for i in "${!MODELS[@]}"; do
   CUDA_VISIBLE_DEVICES=${GPU_ID} \
     python src/train.py \
       --config-name=train.yaml \
-      experiment=finetune/popqa/default \
+      experiment=finetune/unlamb/default \
       model="${MODEL}" \
       task_name="${NEW}" \
       trainer.args.num_train_epochs="${TOTAL_EPOCHS}" \

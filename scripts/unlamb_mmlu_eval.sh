@@ -65,14 +65,14 @@ for model in "${models[@]}"; do
   for task in "${tasks[@]}"; do
     results_dir="${PROJECT_ROOT}/saves/lm_eval/${model}/${task}"
 
-    base_name="popqa_${model}"
+    base_name="unlamb_${model}"
     base_path="${PROJECT_ROOT}/saves/unlearn/${base_name}"
     run_lm_eval "$task" "$base_name" "$base_path" "$results_dir"
 
     for orig in "${orig_splits[@]}"; do
       for trainer in "${trainers[@]}"; do
         name="unlearn_${orig}_${trainer}"
-        path_up="${PROJECT_ROOT}/saves/unlearn/popqa_${model}_${orig}_${trainer}"
+        path_up="${PROJECT_ROOT}/saves/unlearn/unlamb_${model}_${orig}_${trainer}"
         run_lm_eval "$task" "$name" "$path_up" "$results_dir"
       done
     done

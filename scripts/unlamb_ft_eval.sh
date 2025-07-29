@@ -6,7 +6,7 @@ export MASTER_PORT=$(python - <<<'import socket; s=socket.socket(); s.bind(("",0
 echo "Master port: $MASTER_PORT"
 
 PRETRAINED_MODEL_PATH='meta-llama/Llama-3.2-1B'  #'meta-llama/Llama-3.1-8B'
-OUTPUT_BASE="saves/eval/popqa/orig-llama3.2-1b" #llama3.2-1b_ft_5ep" orig-llama3.1-8b
+OUTPUT_BASE="saves/eval/unlamb/orig-llama3.2-1b" #llama3.2-1b_ft_5ep" orig-llama3.1-8b
 
 SPLITS=(
   "rare_forget10"
@@ -26,11 +26,11 @@ for split in "${SPLITS[@]}"; do
   SPLIT_DIR="${OUTPUT_BASE}/${split}"
   mkdir -p "${SPLIT_DIR}"
 
-  TASK_NAME="popqa_llama3.1-8b_${split}"
+  TASK_NAME="unlamb_llama3.1-8b_${split}"
 
   CUDA_VISIBLE_DEVICES=1 python src/eval.py \
     --config-name=eval.yaml \
-    experiment=eval/popqa/default \
+    experiment=eval/unlamb/default \
     forget_split="${split}" \
     task_name="${TASK_NAME}" \
     paths.output_dir="${SPLIT_DIR}" \

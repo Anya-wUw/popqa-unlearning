@@ -3,8 +3,8 @@
 defaults:
   - override /model: Llama-3.1-8B-Instruct
   - override /trainer: finetune
-  - override /data/datasets@data.train: PopQA_full #_full
-  - override /eval: popqa
+  - override /data/datasets@data.train: UNLamb_full #_full
+  - override /eval: unlamb
 
 mode: finetune
 trainer:
@@ -41,11 +41,11 @@ forget_split: rare_forget10
 retain_logs_path: null
 
 eval:
-  popqa:
+  unlamb:
     forget_split: ${forget_split}
     # holdout_split: ${holdout_split}
     retain_logs_path: ${retain_logs_path}
     overwrite: true
 
 
-task_name: popqa_Llama-3.1-8B-Instruct_full
+task_name: unlamb_Llama-3.1-8B-Instruct_full

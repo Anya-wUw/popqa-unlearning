@@ -4,6 +4,6 @@ from evals.base import Evaluator
 #     def __init__(self, eval_cfg, **kwargs):
 #         super().__init__("TOFU", eval_cfg, **kwargs)
 
-class PopQAEvaluator(Evaluator):
+class UNLambEvaluator(Evaluator):
     def __init__(self, eval_cfg, **kwargs):
-        super().__init__("PopQA", eval_cfg, **kwargs)
+        super().__init__("UNLamb", eval_cfg, **kwargs)

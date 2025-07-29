@@ -96,7 +96,7 @@ _register_data(QAwithIdkDataset)
 _register_data(PretrainingDataset)
 _register_data(CompletionDataset)
 _register_data(QAwithAlternateDataset)
-# PopQA register
+# UNLamb register
 _register_data(MultiAnswerQADataset)
 
 # Register composite datasets used in unlearning

@@ -96,7 +96,7 @@ class PretrainingDataset(Dataset):
 
 
 
-# PopQA Dataset
+# UNLamb Dataset
 class MultiAnswerQADataset(Dataset):
     def __init__(
         self,

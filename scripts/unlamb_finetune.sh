@@ -9,9 +9,9 @@ MODELS=(
   "Llama-3.1-8B-Instruct"
 )
 TASK_NAMES=(
-  "llama3.2-1b_full_5ep_ft_popqa"
-  "llama3.2-3b_full_5ep_ft_popqa"
-  "llama3.1-8b_full_1ep_ft_popqa"
+  "llama3.2-1b_full_5ep_ft_unlamb"
+  "llama3.2-3b_full_5ep_ft_unlamb"
+  "llama3.1-8b_full_1ep_ft_unlamb"
 )
 
 GPU_ID=0
@@ -30,7 +30,7 @@ for i in "${!MODELS[@]}"; do
   CUDA_VISIBLE_DEVICES=$GPU_ID \
     python src/train.py \
       --config-name=train.yaml \
-      experiment=finetune/popqa/default \
+      experiment=finetune/unlamb/default \
       model="$MODEL" \
       task_name="$TASK" \
       trainer.args.num_train_epochs="$EPOCHS" \

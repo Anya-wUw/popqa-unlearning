@@ -3,7 +3,7 @@ defaults:
   - trainer: GradAscent
   - data: unlearn
   - collator: DataCollatorForSupervisedDataset
-  - eval: popqa
+  - eval: unlamb
   - hydra: default
   - paths: default
   - experiment: null

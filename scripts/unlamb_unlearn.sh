@@ -5,10 +5,10 @@ export MASTER_PORT=$(python -c "import socket; s=socket.socket(); s.bind(('', 0)
 
 models=( "Llama-3.1-8B-Instruct" ) #"Llama-3.1-8B-Instruct"
 trainers_experiments=(
-    "GradAscent unlearn/popqa/default.yaml"
-    "GradDiff  unlearn/popqa/default.yaml"
-    "NPO       unlearn/popqa/default.yaml"
-    "RMU       unlearn/popqa/default.yaml"
+    "GradAscent unlearn/unlamb/default.yaml"
+    "GradDiff  unlearn/unlamb/default.yaml"
+    "NPO       unlearn/unlamb/default.yaml"
+    "RMU       unlearn/unlamb/default.yaml"
 )
 splits=(
     # "rare_forget10 retain_intersection80 retain_intersection80"
@@ -22,8 +22,8 @@ for split in "${splits[@]}"; do
   for model in "${models[@]}"; do
     for te in "${trainers_experiments[@]}"; do
       read -r trainer experiment <<< "$te"
-      task_name=popqa_${model}_${forget_split}_${trainer}
-      model_path=/mnt/extremessd10tb/borisiuk/open-unlearning/saves/finetune/llama3.1-8b_full_5ep_ft_popqa
+      task_name=unlamb_${model}_${forget_split}_${trainer}
+      model_path=/mnt/extremessd10tb/borisiuk/open-unlearning/saves/finetune/llama3.1-8b_full_5ep_ft_unlamb
 
       echo "=== UNLEARN  $task_name ==="
 
@@ -33,7 +33,7 @@ for split in "${splits[@]}"; do
             experiment=${experiment} trainer=${trainer} task_name=${task_name} \
             model=${model} forget_split=${forget_split} retain_split=${retain_split} \
             model.model_args.pretrained_model_name_or_path=${model_path} \
-            retain_logs_path=saves/eval/forget_5/popqa_${model}_${retain_split}/PopQA_EVAL.json \
+            retain_logs_path=saves/eval/forget_5/unlamb_${model}_${retain_split}/UNLamb_EVAL.json \
             trainer.args.per_device_train_batch_size=4 \
             trainer.args.gradient_accumulation_steps=4 \
             trainer.args.ddp_find_unused_parameters=true \
