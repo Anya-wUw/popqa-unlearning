@@ -6,6 +6,8 @@
 
 UNLamb is a comprehensive benchmark designed to assess machine unlearning methods by investigating how knowledge popularity impacts the efficacy of unlearning. Our research focuses on erasing facts from Large Language Models (LLMs) based on their frequency of occurrence. This benchmark introduces a split between rare and popular facts, providing a more realistic framework for testing unlearning algorithms like GA, GD, NPO, and RMU. Below, you can explore how UNLamb supports the development of popularity-aware unlearning algorithms.
 
+Dataset on HF: https://huggingface.co/datasets/SwetieePawsss/UNLamb 
+
 ---
 
 
